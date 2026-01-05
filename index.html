@@ -1,0 +1,54 @@
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Arena Breakout Stats</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="menuIcon" onclick="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
+
+<nav id="sideMenu">
+    <a href="#" onclick="showSection('ammo')">Amunicja</a>
+    <a href="#" onclick="showSection('armor')">Zbroja (Wkrótce)</a>
+    <a href="#" onclick="showSection('weapons')">Broń (Wkrótce)</a>
+</nav>
+
+<div id="overlay" onclick="toggleMenu()"></div>
+
+    <header>
+        <h1>ARENA BREAKOUT <span>STATS</span></h1>
+
+    </header>
+
+    <main>
+        <section class="controls">
+            <input type="text" id="search" placeholder="Szukaj amunicji...">
+        </section>
+
+        <table id="ammoTable">
+<thead>
+    <tr>
+        <th>Nazwa</th>
+        <th>Kaliber</th>
+        <th>Klasa</th> <th>Obrażenia</th>
+    </tr>
+</thead>
+
+            <tbody id="ammoData">
+                </tbody>
+        </table>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
+<div class="music-container">
+    <button onclick="toggleMusic()" id="musicBtn">🎵 GRAJ MUZYKĘ</button>
+    <audio id="bgMusic" loop>
+        <source src="Arena Breakout.mp3" type="audio/mpeg">
+    </audio>
+</div>
