@@ -1,178 +1,210 @@
+/* --- ZMIENNE I PODSTAWY --- */
 :root {
-    --primary-color: #ff6600;
-    --bg-dark: #121212;
-    --bg-light: #1e1e1e;
-    --text-color: #e0e0e0;
+    --primary-color: #ff6600; /* Pomarańczowy Arena */
+    --bg-overlay: rgba(0, 0, 0, 0.8); /* Przyciemnienie tła */
+    --glass-bg: rgba(20, 20, 20, 0.75); /* Przezroczystość tabeli */
 }
 
 body {
-    background-color: var(--bg-dark);
-    color: var(--text-color);
-    font-family: 'Segoe UI', Roboto, sans-serif;
     margin: 0;
-    overflow-x: hidden;
+    padding: 0;
+    font-family: 'Segoe UI', Roboto, sans-serif;
+    color: white;
+    /* ZDJĘCIE W TLE */
+    background: linear-gradient(var(--bg-overlay), var(--bg-overlay)), url('arena.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Tło stoi, tabela płynie */
+    background-color: #0a0a0a;
 }
 
+/* --- NAGŁÓWEK I TYTUŁY --- */
 header {
     text-align: center;
-    padding: 30px 10px;
-    background: linear-gradient(to bottom, #222, var(--bg-dark));
-    border-bottom: 2px solid var(--primary-color);
+    padding: 40px 20px;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
 }
 
-header h1 { margin: 0; font-size: 1.8rem; letter-spacing: 2px; }
-header h1 span { color: var(--primary-color); text-shadow: 0 0 10px rgba(255, 102, 0, 0.5); }
-
-/* Wyszukiwarka */
-.controls { padding: 20px; text-align: center; sticky; top: 0; z-index: 5; }
-#search {
-    width: 85%;
-    max-width: 500px;
-    padding: 12px;
-    background: #252525;
-    border: 1px solid #444;
-    color: white;
-    border-radius: 25px;
-    outline: none;
-    transition: 0.3s;
+h1 {
+    font-size: 2.5rem;
+    margin: 0;
+    letter-spacing: 2px;
 }
-#search:focus { border-color: var(--primary-color); box-shadow: 0 0 8px var(--primary-color); }
 
-/* Tabela */
-.table-container {
+h1 span {
+    color: var(--primary-color);
+}
+
+/* --- PŁYWAJĄCY PASEK (TICKER) --- */
+.ticker-wrapper {
     width: 100%;
+    background: rgba(255, 102, 0, 0.1);
+    border-top: 1px solid var(--primary-color);
+    border-bottom: 1px solid var(--primary-color);
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.ticker {
+    display: flex;
+    white-space: nowrap;
+    animation: tickerMove 25s linear infinite;
+    padding: 10px 0;
+}
+
+.ticker span {
+    padding: 0 40px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    text-transform: uppercase;
+}
+
+@keyframes tickerMove {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+}
+
+/* --- MENU BOCZNE --- */
+#menuIcon {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1001;
+    cursor: pointer;
+    background: var(--primary-color);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#menuIcon span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: white;
+    margin: 5px 0;
+}
+
+#sideMenu {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1002;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.3s;
+    padding-top: 60px;
+}
+
+#sideMenu a {
+    padding: 15px 25px;
+    text-decoration: none;
+    font-size: 1.1rem;
+    color: #818181;
+    display: block;
+    transition: 0.2s;
+}
+
+#sideMenu a:hover {
+    color: var(--primary-color);
+    padding-left: 35px;
+}
+
+.menu-header {
+    color: white;
+    padding: 10px 25px;
+    font-weight: bold;
+    border-bottom: 1px solid #333;
+    margin-bottom: 10px;
+}
+
+#overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    z-index: 1000;
+}
+
+/* --- TABELA (EFEKT SZKŁA) --- */
+main {
+    padding: 0 15px 50px 15px;
+}
+
+.controls {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#search {
+    padding: 12px;
+    width: 100%;
+    max-width: 400px;
+    border-radius: 5px;
+    border: 1px solid #444;
+    background: rgba(0,0,0,0.6);
+    color: white;
+    font-size: 1rem;
+}
+
+.table-container {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px); /* Rozmycie tła pod tabelą */
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
     overflow-x: auto;
-    max-height: 70vh; /* Przewijanie tabeli wewnątrz strony */
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
-    min-width: 700px;
 }
 
-/* Nagłówek tabeli zostaje na górze (Sticky) */
-thead th {
-    position: sticky;
-    top: 0;
-    background: #222;
-    color: var(--primary-color);
+th, td {
     padding: 15px;
-    font-size: 0.9rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+th {
+    background: rgba(255, 102, 0, 0.2);
+    color: var(--primary-color);
     text-transform: uppercase;
-    z-index: 10;
+    font-size: 0.85rem;
 }
 
-td {
-    padding: 12px 15px;
-    border-bottom: 1px solid #2a2a2a;
-    font-size: 0.95rem;
+tr:hover {
+    background: rgba(255, 255, 255, 0.05);
 }
 
-tbody tr:nth-child(even) { background: #181818; }
-tbody tr:hover { background: #252525; }
-
-/* Menu boczne */
-#sideMenu {
-    height: 100%; width: 0; position: fixed;
-    z-index: 1000; top: 0; left: 0;
-    background-color: #111; overflow-x: hidden;
-    transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    padding-top: 60px;
-    box-shadow: 2px 0 15px rgba(0,0,0,0.5);
-}
-
-.menu-header { color: #555; padding: 10px 25px; font-weight: bold; font-size: 0.8rem; }
-
-#sideMenu a {
-    padding: 15px 25px; text-decoration: none;
-    font-size: 1.1rem; color: #bbb; display: block;
-    transition: 0.2s;
-}
-
-#sideMenu a:hover { color: var(--primary-color); background: #1a1a1a; padding-left: 35px; }
-
-/* Ikona Menu */
-#menuIcon {
-    position: fixed; top: 20px; left: 20px;
-    z-index: 1001; cursor: pointer;
-    background: rgba(0,0,0,0.6); padding: 10px; border-radius: 5px;
-}
-
-#menuIcon span {
-    display: block; width: 25px; height: 3px;
-    background: var(--primary-color); margin: 5px 0;
-}
-
-#overlay {
-    display: none; position: fixed;
-    width: 100%; height: 100%; top: 0; left: 0;
-    background: rgba(0,0,0,0.7); z-index: 999;
-    backdrop-filter: blur(3px);
-}
-
-/* Muzyka */
-.music-container { position: fixed; bottom: 20px; right: 20px; z-index: 100; }
-#musicBtn {
-    background: #222; color: white; border: 1px solid var(--primary-color);
-    padding: 10px 18px; border-radius: 30px; cursor: pointer;
-    font-size: 0.8rem;
-}
-/* Kontener paska */
-.ticker-wrapper {
-    width: 100%;
-    background: #000;
-    border-bottom: 1px solid #ff6600;
-    overflow: hidden; /* Ukrywa tekst poza paskiem */
-    padding: 5px 0;
-}
-
-/* Animacja przesuwania */
-.ticker {
-    display: flex;
-    white-space: nowrap;
-    animation: moveTicker 20s linear infinite;
-}
-
-/* Styl tekstu */
-.ticker span {
-    color: #ff6600;
-    font-family: monospace;
-    font-weight: bold;
-    padding: 0 50px; /* Odstęp między komunikatami */
-    letter-spacing: 2px;
-}
-
-@keyframes moveTicker {
-    0% { transform: translateX(100%); }
-    100% { transform: translateX(-100%); }
-}
-
-/* Opcjonalnie: zatrzymanie po najechaniu myszką */
-.ticker-wrapper:hover .ticker {
-    animation-play-state: paused;
-}
+/* --- GALERIA 4x4 --- */
 .photo-grid-section {
-    padding: 20px;
     margin-top: 40px;
-    background: #181818;
-    border-top: 1px solid #333;
+    padding: 20px;
+    background: rgba(0,0,0,0.5);
+    border-radius: 10px;
 }
 
 .photo-grid {
     display: grid;
-    /* Tworzy 4 równe kolumny */
     grid-template-columns: repeat(4, 1fr);
     gap: 15px;
 }
 
 .photo-card {
-    background: #222;
+    background: rgba(34, 34, 34, 0.8);
     border: 1px solid #444;
     border-radius: 8px;
     overflow: hidden;
-    text-align: center;
     transition: 0.3s;
+    cursor: pointer;
 }
 
 .photo-card:hover {
@@ -187,31 +219,22 @@ tbody tr:hover { background: #252525; }
 }
 
 .photo-card p {
-    margin: 10px 0;
+    margin: 8px;
     font-size: 0.8rem;
-    color: #bbb;
+    text-align: center;
+    color: #ccc;
 }
 
-/* Responsywność dla telefonów */
-@media (max-width: 768px) {
-    .photo-grid {
-        grid-template-columns: repeat(2, 1fr); /* 2 kolumny na małych ekranach */
-    }
-}
-/* Styl okna modalnego */
+/* --- MODAL (POWIĘKSZANIE ZDJĘĆ) --- */
 .modal {
-    display: none; /* Ukryte domyślnie */
+    display: none;
     position: fixed;
-    z-index: 2000; /* Nad wszystkim */
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.95);
-    cursor: zoom-out;
+    z-index: 2000;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.9);
 }
 
-/* Zdjęcie w oknie */
 .modal-content {
     margin: auto;
     display: block;
@@ -220,31 +243,50 @@ tbody tr:hover { background: #252525; }
     position: relative;
     top: 50%;
     transform: translateY(-50%);
-    border: 2px solid #ff6600;
+    border: 2px solid var(--primary-color);
 }
 
-/* Przycisk zamykania */
 .close-modal {
     position: absolute;
     top: 20px;
     right: 35px;
-    color: #fff;
+    color: white;
     font-size: 40px;
     font-weight: bold;
     cursor: pointer;
 }
 
-/* Podpis pod zdjęciem */
 #caption {
-    margin: auto;
-    display: block;
-    width: 80%;
     text-align: center;
-    color: #ff6600;
-    padding: 10px 0;
-    position: absolute;
-    bottom: 5%;
-    left: 10%;
-    font-family: monospace;
+    color: var(--primary-color);
+    padding: 10px;
     font-weight: bold;
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+}
+
+/* --- MUZYKA --- */
+.music-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+#musicBtn {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* --- RESPONSYWNOŚĆ --- */
+@media (max-width: 768px) {
+    .photo-grid { grid-template-columns: repeat(2, 1fr); }
+    h1 { font-size: 1.8rem; }
+    th, td { font-size: 0.8rem; padding: 10px 5px; }
 }
