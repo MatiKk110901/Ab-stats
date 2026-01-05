@@ -18,7 +18,7 @@
         <a href="#" onclick="showSection('ammo')">🔥 Amunicja</a>
         <a href="#" onclick="showSection('armor')">🛡️ Zbroje (36)</a>
         <a href="#" onclick="showSection('helmets')">🪖 Hełmy (39)</a>
-        <a href="#" onclick="showSection('weapons')">🔫 Broń (Wkrótce)</a>
+        <a href="#" onclick="showSection('weapons')">🔫 Broń (Jutro)</a>
     </nav>
 
     <div id="overlay" onclick="toggleMenu()"></div>
@@ -42,7 +42,6 @@
             <input type="text" id="search" placeholder="Szukaj przedmiotu...">
         </section>
 
-
         <div class="table-container">
             <table>
                 <thead>
@@ -60,6 +59,80 @@
                     </tbody>
             </table>
         </div>
+
+         <section class="photo-grid-section">
+            <div class="menu-header" style="text-align:center; margin: 30px 0 20px 0; color: #ff6600;">GALERIA SPRZĘTU</div>
+            <div class="photo-grid">
+                <div class="photo-card">
+                    <img src="709.png" alt="AX50" onclick="openImage(this)">
+                    <p>AX-50</p>
+                </div>
+                <div class="photo-card">
+                    <img src="710.png" alt="MK14" onclick="openImage(this)">
+                    <p>MK14</p>
+                </div>
+                <div class="photo-card">
+                    <img src="711.png" alt="H416" onclick="openImage(this)">
+                    <p>H416</p>
+                </div>
+                <div class="photo-card">
+                    <img src="712.png" alt="AR57" onclick="openImage(this)">
+                    <p>AR57</p>
+                </div>
+
+                <div class="photo-card">
+                    <img src="705.png" alt="M62 Ammo" onclick="openImage(this)">
+                    <p>M62 Ammo</p>
+                </div>
+                <div class="photo-card">
+                    <img src="706.png" alt="M2 Ammo" onclick="openImage(this)">
+                    <p>M2 Ammo</p>
+                </div>
+                <div class="photo-card">
+                    <img src="707.png" alt="M995 Ammo" onclick="openImage(this)">
+                    <p>M995 Ammo</p>
+                </div>
+                <div class="photo-card">
+                    <img src="708.png" alt="SS198 Ammo" onclick="openImage(this)">
+                    <p>SS198 Ammo</p>
+                </div>
+
+                <div class="photo-card">
+                    <img src="697.png" alt="BT201 Armor" onclick="openImage(this)">
+                    <p>BT201 Armor</p>
+                </div>
+                <div class="photo-card">
+                    <img src="698.png" alt="BT101 Armor" onclick="openImage(this)">
+                    <p>BT101 Armor</p>
+                </div>
+                <div class="photo-card">
+                    <img src="703.png" alt="BT6 Armor" onclick="openImage(this)">
+                    <p>BT6 Armor</p>
+                </div>
+                <div class="photo-card">
+                    <img src="704.png" alt="Spartan B Armor" onclick="openImage(this)">
+                    <p>Spartan B Armor</p>
+                </div>
+
+                <div class="photo-card">
+                    <img src="699.png" alt="IND70 Helmet" onclick="openImage(this)">
+                    <p>IND70 Helmet</p>
+                </div>
+                <div class="photo-card">
+                    <img src="700.png" alt="IND50 Helmet" onclick="openImage(this)">
+                    <p>IND50 Helmet</p>
+                </div>
+                <div class="photo-card">
+                    <img src="702.png" alt="03 Heavy Helmet" onclick="openImage(this)">
+                    <p>03 Heavy Helmet</p>
+                </div>
+                <div class="photo-card">
+                    <img src="701.png" alt="KSS2 Helmet" onclick="openImage(this)">
+                    <p>KSS2 Helmet</p>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <div class="music-container">
@@ -70,5 +143,12 @@
     </div>
 
     <script src="script.js"></script>
+    
+<div id="imageModal" class="modal" onclick="closeImage()">
+    <span class="close-modal">&times;</span>
+    <img class="modal-content" id="fullImage">
+    <div id="caption"></div>
+</div>
+
 </body>
 </html>
