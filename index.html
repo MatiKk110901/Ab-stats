@@ -1,54 +1,74 @@
+<!DOCTYPE html>
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <title>Arena Breakout Stats</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arena Breakout - Wiki Stats</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div id="menuIcon" onclick="toggleMenu()">
-    <span></span>
-    <span></span>
-    <span></span>
-</div>
+    <div id="menuIcon" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
 
-<nav id="sideMenu">
-    <a href="#" onclick="showSection('ammo')">Amunicja</a>
-    <a href="#" onclick="showSection('armor')">Zbroja (Wkrótce)</a>
-    <a href="#" onclick="showSection('weapons')">Broń (Wkrótce)</a>
-</nav>
+    <nav id="sideMenu">
+        <div class="menu-header">KATEGORIE</div>
+        <a href="#" onclick="showSection('ammo')">🔥 Amunicja</a>
+        <a href="#" onclick="showSection('armor')">🛡️ Zbroje (36)</a>
+        <a href="#" onclick="showSection('helmets')">🪖 Hełmy (39)</a>
+        <a href="#" onclick="showSection('weapons')">🔫 Broń (Wkrótce)</a>
+    </nav>
 
-<div id="overlay" onclick="toggleMenu()"></div>
+    <div id="overlay" onclick="toggleMenu()"></div>
 
     <header>
-        <h1>ARENA BREAKOUT <span>STATS</span></h1>
-
+        <h1 id="mainTitle">ARENA BREAKOUT <span>AMMO</span></h1>
     </header>
+
+    <div class="ticker-wrapper">
+        <div class="ticker">
+            <span>KONTRAKT ZAKOŃCZONY...</span>
+            <span>NOWE DOSTAWY U PASERÓW...</span>
+            <span>UWAGA NA SNAJPERÓW W DOLINIE...</span>
+            <span>AMUNICJA DUM-DUM NA STANIE...</span>
+            <span>WYPEŁNIJ PLECAK I UCIEKAJ...</span>
+        </div>
+    </div>
 
     <main>
         <section class="controls">
-            <input type="text" id="search" placeholder="Szukaj amunicji...">
+            <input type="text" id="search" placeholder="Szukaj przedmiotu...">
         </section>
 
-        <table id="ammoTable">
-<thead>
-    <tr>
-        <th>Nazwa</th>
-        <th>Kaliber</th>
-        <th>Klasa</th> <th>Obrażenia</th>
-    </tr>
-</thead>
 
-            <tbody id="ammoData">
-                </tbody>
-        </table>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nazwa</th>
+                        <th>Klasa / Kaliber</th>
+                        <th>Mat. / Pen.</th>
+                        <th>Wytrz. / Obr.</th>
+                        <th>Waga</th>
+                        <th>Ergo.</th>
+                        <th>Prędkość</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    </tbody>
+            </table>
+        </div>
     </main>
+
+    <div class="music-container">
+        <button onclick="toggleMusic()" id="musicBtn">🎵 GRAJ MUZYKĘ</button>
+        <audio id="bgMusic" loop>
+            <source src="Arena Breakout.mp3" type="audio/mpeg">
+        </audio>
+    </div>
 
     <script src="script.js"></script>
 </body>
 </html>
-<div class="music-container">
-    <button onclick="toggleMusic()" id="musicBtn">🎵 GRAJ MUZYKĘ</button>
-    <audio id="bgMusic" loop>
-        <source src="Arena Breakout.mp3" type="audio/mpeg">
-    </audio>
-</div>

@@ -1,158 +1,154 @@
+:root {
+    --primary-color: #ff6600;
+    --bg-dark: #121212;
+    --bg-light: #1e1e1e;
+    --text-color: #e0e0e0;
+}
+
 body {
-    background-color: #1a1a1a;
-    color: #e0e0e0;
-    font-family: 'Segoe UI', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-color);
+    font-family: 'Segoe UI', Roboto, sans-serif;
     margin: 0;
-    padding: 20px;
+    overflow-x: hidden;
 }
 
 header {
     text-align: center;
-    border-bottom: 2px solid #ff6600;
-    padding-bottom: 20px;
-    margin-bottom: 30px;
+    padding: 30px 10px;
+    background: linear-gradient(to bottom, #222, var(--bg-dark));
+    border-bottom: 2px solid var(--primary-color);
 }
 
-h1 span {
-    color: #ff6600;
-}
+header h1 { margin: 0; font-size: 1.8rem; letter-spacing: 2px; }
+header h1 span { color: var(--primary-color); text-shadow: 0 0 10px rgba(255, 102, 0, 0.5); }
 
+/* Wyszukiwarka */
+.controls { padding: 20px; text-align: center; sticky; top: 0; z-index: 5; }
 #search {
-    width: 100%;
-    padding: 10px;
-    background: #333;
-    border: 1px solid #ff6600;
+    width: 85%;
+    max-width: 500px;
+    padding: 12px;
+    background: #252525;
+    border: 1px solid #444;
     color: white;
-    margin-bottom: 20px;
+    border-radius: 25px;
+    outline: none;
+    transition: 0.3s;
+}
+#search:focus { border-color: var(--primary-color); box-shadow: 0 0 8px var(--primary-color); }
+
+/* Tabela */
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+    max-height: 70vh; /* Przewijanie tabeli wewnątrz strony */
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
-    background: #252525;
+    min-width: 700px;
 }
 
-th {
-    background-color: #ff6600;
-    color: black;
-    padding: 12px;
-    text-align: left;
+/* Nagłówek tabeli zostaje na górze (Sticky) */
+thead th {
+    position: sticky;
+    top: 0;
+    background: #222;
+    color: var(--primary-color);
+    padding: 15px;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    z-index: 10;
 }
 
 td {
-    padding: 10px;
-    border-bottom: 1px solid #333;
+    padding: 12px 15px;
+    border-bottom: 1px solid #2a2a2a;
+    font-size: 0.95rem;
 }
 
-tr:hover {
-    background-color: #333;
-}
-.caliber-group td {
-    background-color: #333;
-    color: #ff6600;
-    font-weight: bold;
-    text-align: center;
-    border-bottom: 2px solid #ff6600;
-}
-
-/* Nowe kolory poziomów penetracji */
-.pen-val { 
-    font-weight: bold; 
-    text-align: center; 
-}
-
-.pen-0, .pen-1, .pen-2 { color: #888888; } /* Szary (Poziomy 0, 1, 2) */
-.pen-3 { color: #9c88ff; }                 /* Fioletowy (Poziom 3) */
-.pen-4 { color: #f1c40f; }                 /* Złoty (Poziom 4) */
-.pen-5 { color: #f1c40f; }                 /* Złoty (Poziom 5) */
-.pen-6 { color: #ff0000; }                 /* Intensywny Czerwony (Poziom 6) */
-/* Ikona trzech kresek */
-#menuIcon {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    z-index: 1000;
-    cursor: pointer;
-}
-
-#menuIcon span {
-    display: block;
-    width: 30px;
-    height: 4px;
-    background-color: #ff6600;
-    margin: 5px 0;
-    transition: 0.4s;
-}
+tbody tr:nth-child(even) { background: #181818; }
+tbody tr:hover { background: #252525; }
 
 /* Menu boczne */
 #sideMenu {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    z-index: 999;
-    top: 0;
-    left: 0;
-    background-color: #111;
-    overflow-x: hidden;
-    transition: 0.5s;
-    padding-top: 80px;
+    height: 100%; width: 0; position: fixed;
+    z-index: 1000; top: 0; left: 0;
+    background-color: #111; overflow-x: hidden;
+    transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    padding-top: 60px;
+    box-shadow: 2px 0 15px rgba(0,0,0,0.5);
 }
+
+.menu-header { color: #555; padding: 10px 25px; font-weight: bold; font-size: 0.8rem; }
 
 #sideMenu a {
-    padding: 15px 25px;
-    text-decoration: none;
-    font-size: 20px;
-    color: white;
-    display: block;
-    transition: 0.3s;
+    padding: 15px 25px; text-decoration: none;
+    font-size: 1.1rem; color: #bbb; display: block;
+    transition: 0.2s;
 }
 
-#sideMenu a:hover {
-    color: #ff6600;
+#sideMenu a:hover { color: var(--primary-color); background: #1a1a1a; padding-left: 35px; }
+
+/* Ikona Menu */
+#menuIcon {
+    position: fixed; top: 20px; left: 20px;
+    z-index: 1001; cursor: pointer;
+    background: rgba(0,0,0,0.6); padding: 10px; border-radius: 5px;
 }
 
-/* Nakładka */
+#menuIcon span {
+    display: block; width: 25px; height: 3px;
+    background: var(--primary-color); margin: 5px 0;
+}
+
 #overlay {
-    display: none;
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.7);
-    z-index: 998;
-}
-.music-container {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 2000;
+    display: none; position: fixed;
+    width: 100%; height: 100%; top: 0; left: 0;
+    background: rgba(0,0,0,0.7); z-index: 999;
+    backdrop-filter: blur(3px);
 }
 
+/* Muzyka */
+.music-container { position: fixed; bottom: 20px; right: 20px; z-index: 100; }
 #musicBtn {
-    background-color: #ff6600;
-    color: black;
-    border: 2px solid #000;
-    padding: 10px 15px;
-    font-weight: bold;
-    cursor: pointer;
-    border-radius: 5px;
-    box-shadow: 0px 0px 10px rgba(255, 102, 0, 0.5);
+    background: #222; color: white; border: 1px solid var(--primary-color);
+    padding: 10px 18px; border-radius: 30px; cursor: pointer;
+    font-size: 0.8rem;
+}
+/* Kontener paska */
+.ticker-wrapper {
+    width: 100%;
+    background: #000;
+    border-bottom: 1px solid #ff6600;
+    overflow: hidden; /* Ukrywa tekst poza paskiem */
+    padding: 5px 0;
 }
 
-#musicBtn:hover {
-    background-color: #e65c00;
-}
-#musicBtn {
-    background: #ff6600;
-    color: #000;
-    border: none;
-    padding: 12px 20px;
-    font-weight: bold;
-    font-family: 'Arial Black', sans-serif;
-    cursor: pointer;
-    border-radius: 2px; /* Bardziej kanciaste, jak w grze */
-    transition: 0.3s;
+/* Animacja przesuwania */
+.ticker {
+    display: flex;
+    white-space: nowrap;
+    animation: moveTicker 20s linear infinite;
 }
 
-#musicBtn:hover {
-    background: #fff;
+/* Styl tekstu */
+.ticker span {
     color: #ff6600;
+    font-family: monospace;
+    font-weight: bold;
+    padding: 0 50px; /* Odstęp między komunikatami */
+    letter-spacing: 2px;
+}
+
+@keyframes moveTicker {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+}
+
+/* Opcjonalnie: zatrzymanie po najechaniu myszką */
+.ticker-wrapper:hover .ticker {
+    animation-play-state: paused;
 }
