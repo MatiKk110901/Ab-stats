@@ -240,30 +240,17 @@ function openImage(element) {
 function closeImage() {
     document.getElementById("imageModal").style.display = "none";
 }
-function startIntro() {
-    // Ukrywamy logo, pokazujemy wideo
-    document.getElementById('logo-start').classList.add('hidden');
-    const video = document.getElementById('intro-video');
-    video.classList.remove('hidden');
-    
-    video.play();
-
-    // Po zakończeniu filmu
-    video.onended = function() {
-        video.classList.add('hidden');
-        document.getElementById('faction-screen').classList.remove('hidden');
-    };
-}
-
 function chooseFaction(side) {
     const root = document.querySelector(':root');
     
     if (side === 'MNST') {
         root.style.setProperty('--primary-color', '#0088ff');
+        alert("Wybrano MNST"); // Możesz usunąć to powiadomienie
     } else {
         root.style.setProperty('--primary-color', '#ff0000');
+        alert("Wybrano CDIS"); // Możesz usunąć to powiadomienie
     }
 
-    // NAJWAŻNIEJSZE: Usuwamy cały czarny ekran i pokazujemy stronę
+    // Usuwa czarny ekran i pokazuje stronę
     document.getElementById('intro-overlay').style.display = 'none';
 }
